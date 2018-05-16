@@ -7,5 +7,6 @@ urlpatterns = [
     url(r'^$', views.main, name='main'),
     url(r'^login', views.login, name='login'),
     url(r'^logout$', logout, {'next_page': settings.LOGOUT_REDIRECT_URL}, name='logout'),
+    url(r'^signup$', views.signup, name='signup'),
     url(r'^sakura$', views.sakura, name='sakura'),
 ]

@@ -27,5 +27,18 @@ def login(request):
         else:
             return render(request, 'blog/login.html', {})
 
+def signup(request):
+    if request.method == 'POST':
+        form = UserForm(request.POST)
+        if form.is_valid():
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password']
+            user = User.objects.create_user(username, password)
+            auth_login(request, user)
+            return redirect('main')
+    else:
+        form = UserForm()
+        return render(request, 'blog/signup.html', {'form': form})
+
 def sakura(request):
     return render(request, 'blog/sakura.html', {})
