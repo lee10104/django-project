@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils import timezone
 from django.core.validators import URLValidator
+from django.contrib.auth.models import User
 from .core import *
 
 class Category(models.Model):
