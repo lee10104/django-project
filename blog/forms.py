@@ -6,3 +6,10 @@ class UserForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ('username', 'password',)
+
+class PictureForm(forms.ModelForm):
+    image = forms.ImageField(required=False)
+    link = forms.CharField(widget=forms.Textarea, required=False)
+    class Meta:
+        model = Picture
+        exclude = ('category',)

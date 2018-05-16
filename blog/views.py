@@ -41,4 +41,37 @@ def signup(request):
         return render(request, 'blog/signup.html', {'form': form})
 
 def sakura(request):
-    return render(request, 'blog/sakura.html', {})
+    try:
+        category = Category.objects.get(name='sakura')
+    except:
+        category = Category.objects.create(name='sakura')
+    pictures = Picture.objects.filter(category=category)
+    form = PictureForm()
+    context = {
+        'category': category,
+        'pictures': pictures,
+        'form': form,
+    }
+    return render(request, 'blog/sakura.html', context)
+
+@login_required
+def add_picture(request):
+    if request.method == 'POST':
+        category = Category.objects.get(name=request.POST.get('category'))
+        form = PictureForm(request.POST, request.FILES)
+        if form.is_valid():
+            link = form.cleaned_data['link']
+            image = form.cleaned_data['image']
+            if link and image:
+                return HttpResponse("하나만 넣으세요")
+            elif not link and not image:
+                return HttpResponse("하나라도 넣으세요")
+            else:
+                obj = form.save(commit=False)
+                obj.category = category
+                obj.save()
+                return redirect('sakura')
+
+@login_required
+def delete_picture(request):
+    return redirect('sakura')

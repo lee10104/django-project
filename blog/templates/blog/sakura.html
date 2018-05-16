@@ -1,0 +1,18 @@
+{% extends 'blog/base.html' %}
+{% block content %}
+    {% for picture in pictures %}
+        {% if picture.image %}
+            <img src="{{ picture.image.url }}">
+        {% else %}
+            <img src="{{ picture.link }}">
+        {% endif %}
+    {% endfor %}
+    {% if user.is_authenticated %}
+        <form method="post" action="{% url 'add_picture' %}" enctype="multipart/form-data">
+            {% csrf_token %}
+            <input type="hidden" name="category" value="sakura">
+            {{ form.as_p }}
+            <button type="submit">추가하기</button>
+        </form>
+    {% endif %}
+{% endblock %}
