@@ -6,4 +6,6 @@ db.sqlite3
 uwsgi.ini
 __pycache__
 /static
+/media
+migrations
 .DS_Store
