@@ -1,5 +1,442 @@
-{% extends 'blog/base.html' %}
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="">
+        <meta name="author" content="">
 
-{% block content %}
-    인생...
-{% endblock %}
+        <title>갤럭의 헛소리</title>
+
+        <!-- Bootstrap core CSS -->
+        <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+        <!-- Custom fonts for this template -->
+        <link href="{% static 'vendor/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+        <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+
+        <!-- Custom styles for this template -->
+        <link href="{% static 'css/agency.min.css' %}" rel="stylesheet">
+
+    </head>
+
+    <body id="page-top">
+
+        <!-- Navigation -->
+        <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+            <div class="container">
+                <a class="navbar-brand js-scroll-trigger" href="#page-top">Galaxy's Drivel</a>
+                <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    Menu
+                    <i class="fa fa-bars"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav text-uppercase ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link js-scroll-trigger" href="#desires">Desire</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link js-scroll-trigger" href="#portfolio">Portfolio</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link js-scroll-trigger" href="#life">Life</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link js-scroll-trigger" href="#about">About Me</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Header -->
+        <header class="masthead">
+            <div class="container">
+                <div class="intro-text">
+                    <div class="intro-lead-in">인생이란 무엇인가</div>
+                    <div class="intro-heading text-uppercase">덕질과 미식!</div>
+                    <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="#desires">Tell Me More</a>
+                </div>
+            </div>
+        </header>
+
+        <!-- Services -->
+        <section id="desires">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 text-center">
+                        <h2 class="section-heading text-uppercase">Desire</h2>
+                        <h3 class="section-subheading text-muted">사람을 사람으로 존재하게 하는 것은 욕망이다</h3>
+                    </div>
+                </div>
+                <div class="row text-center">
+                    <div class="col-md-6">
+                        <span class="fa-stack fa-4x">
+                            <img class="img-fluid" src="{% static 'img/icon/icon1.jpg' %}">
+                        </span>
+                        <h4 class="desire-heading">덕질</h4>
+                        <p class="text-muted">사랑하는 것을 여러 방면으로 향유하고자 하는 욕망</p>
+                    </div>
+                    <div class="col-md-6">
+                        <span class="fa-stack fa-4x">
+                            <img class="img-fluid" src="{% static 'img/icon/icon2.jpg' %}">
+                        </span>
+                        <h4 class="desire-heading">미식</h4>
+                        <p class="text-muted">조금 더 맛있는 것, 조금 더 새로운 것을 먹어보고자 하는 욕망</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Portfolio Grid -->
+        <section class="bg-light" id="portfolio">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 text-center">
+                        <h2 class="section-heading text-uppercase">Portfolio</h2>
+                        <h3 class="section-subheading text-muted">관심사가 늘어만 가는 잡덕</h3>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 col-sm-6 portfolio-item">
+                        <a class="portfolio-link" data-toggle="modal" href="#portfolioModal1">
+                            <div class="portfolio-hover">
+                                <div class="portfolio-hover-content">
+                                    <i class="fa fa-plus fa-3x"></i>
+                                </div>
+                            </div>
+                            <img class="img-fluid" src="{% static 'img/portfolio/01-thumbnail.jpg' %}" alt="">
+                        </a>
+                        <div class="portfolio-caption">
+                            <h4>Fantasy</h4>
+                            <p class="text-muted">봐도 봐도 끝이 없다</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6 portfolio-item">
+                        <a class="portfolio-link" data-toggle="modal" href="#portfolioModal2">
+                            <div class="portfolio-hover">
+                                <div class="portfolio-hover-content">
+                                    <i class="fa fa-plus fa-3x"></i>
+                                </div>
+                            </div>
+                            <img class="img-fluid" src="{% static 'img/portfolio/02-thumbnail.jpg' %}" alt="">
+                        </a>
+                        <div class="portfolio-caption">
+                            <h4>Fate</h4>
+                            <p class="text-muted">아 달빠 아니라니까요</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6 portfolio-item">
+                        <a class="portfolio-link" data-toggle="modal" href="#portfolioModal3">
+                            <div class="portfolio-hover">
+                                <div class="portfolio-hover-content">
+                                    <i class="fa fa-plus fa-3x"></i>
+                                </div>
+                            </div>
+                            <img class="img-fluid" src="{% static 'img/portfolio/03-thumbnail.jpg' %}" alt="">
+                        </a>
+                        <div class="portfolio-caption">
+                            <h4>IU</h4>
+                            <p class="text-muted">사랑해요 아이유</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Life -->
+        <section id="life">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 text-center">
+                        <h2 class="section-heading text-uppercase">Life</h2>
+                        <h3 class="section-subheading text-muted">욕망에 충실하게 살아온 생애</h3>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <ul class="timeline">
+                            <li>
+                                <div class="timeline-image">
+                                    <img class="rounded-circle img-fluid" src="{% static 'img/about/1.jpg' %}" alt="">
+                                </div>
+                                <div class="timeline-panel">
+                                    <div class="timeline-heading">
+                                        <h4>1994</h4>
+                                        <h4 class="subheading">식탐의 시작</h4>
+                                    </div>
+                                    <div class="timeline-body">
+                                        <p class="text-muted">100일 10kg의 기적</p>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="timeline-inverted">
+                                <div class="timeline-image">
+                                    <img class="rounded-circle img-fluid" src="{% static 'img/about/2.jpg' %}" alt="">
+                                </div>
+                                <div class="timeline-panel">
+                                    <div class="timeline-heading">
+                                        <h4>2004</h4>
+                                        <h4 class="subheading">판타지소설</h4>
+                                    </div>
+                                    <div class="timeline-body">
+                                        <p class="text-muted">해리포터에서 시작된 판타지소설 덕질은 20대 중반이 되어가도록 끝나지 않는다</p>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="timeline-image">
+                                    <img class="rounded-circle img-fluid" src="{% static 'img/about/3.jpg' %}" alt="">
+                                </div>
+                                <div class="timeline-panel">
+                                    <div class="timeline-heading">
+                                        <h4>October 2011</h4>
+                                        <h4 class="subheading">한국 보컬로이드?</h4>
+                                    </div>
+                                    <div class="timeline-body">
+                                        <p class="text-muted">시작은 미약하였으나..</p>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="timeline-inverted">
+                                <div class="timeline-image">
+                                    <img class="rounded-circle img-fluid" src="{% static 'img/about/4.jpg' %}" alt="">
+                                </div>
+                                <div class="timeline-panel">
+                                    <div class="timeline-heading">
+                                        <h4>March 2013</h4>
+                                        <h4 class="subheading">마술</h4>
+                                    </div>
+                                    <div class="timeline-body">
+                                        <p class="text-muted">스테이지 마술</p>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="timeline-image">
+                                    <img class="rounded-circle img-fluid" src="{% static 'img/about/5.jpg' %}" alt="">
+                                </div>
+                                <div class="timeline-panel">
+                                    <div class="timeline-heading">
+                                        <h4>September 2013</h4>
+                                        <h4 class="subheading">뮤지컬</h4>
+                                    </div>
+                                    <div class="timeline-body">
+                                        <p class="text-muted">Rebecca, 프랑켄슈타인 등</p>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="timeline-inverted">
+                                <div class="timeline-image">
+                                    <img class="rounded-circle img-fluid" src="{% static 'img/about/6.jpg' %}" alt="">
+                                </div>
+                                <div class="timeline-panel">
+                                    <div class="timeline-heading">
+                                        <h4>2014</h4>
+                                        <h4 class="subheading">Fate</h4>
+                                    </div>
+                                    <div class="timeline-body">
+                                        <p class="text-muted">Fate/Zero, Fate/Stay Night, Fate/Grand Order</p>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="timeline-image">
+                                    <img class="rounded-circle img-fluid" src="{% static 'img/about/7.jpg' %}" alt="">
+                                </div>
+                                <div class="timeline-panel">
+                                    <div class="timeline-heading">
+                                        <h4>November 2017</h4>
+                                        <h4 class="subheading">IU</h4>
+                                    </div>
+                                    <div class="timeline-body">
+                                        <p class="text-muted">Palette는 갓앨범이다</p>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="timeline-inverted">
+                                <div class="timeline-image">
+                                    <h4>What
+                                        <br>Is
+                                        <br>Next?</h4>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About -->
+        <section class="bg-light" id="about">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 text-center">
+                        <h2 class="section-heading text-uppercase">About Me</h2>
+                        <h3 class="section-subheading text-muted">다양한 곳에서 헛소리하는 갤럭을 만나보세요!</h3>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="team-member">
+                            <img class="mx-auto rounded-circle" src="https://pbs.twimg.com/profile_images/980484882936709120/1QOTPbK6_400x400.jpg" alt="">
+                            <h4>이배추님</h4>
+                            <p class="text-muted">일상 계정</p>
+                            <ul class="list-inline social-buttons">
+                                <li class="list-inline-item">
+                                    <a href="https://twitter.com/lee10104_">
+                                        <i class="fa fa-twitter"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="team-member">
+                            <img class="mx-auto rounded-circle" src="https://pbs.twimg.com/profile_images/982999287708581896/pgPOggMK_400x400.jpg" alt="">
+                            <h4>소설보는 사람</h4>
+                            <p class="text-muted">판타지 소설 계정</p>
+                            <ul class="list-inline social-buttons">
+                                <li class="list-inline-item">
+                                    <a href="https://twitter.com/soseol_reader">
+                                        <i class="fa fa-twitter"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-8 mx-auto text-center">
+                        <p class="large text-muted">트위터는 인생의 낭비입니다!</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <span class="copyright">Copyright &copy; 2013-2018 Blackrock Digital LLC</span>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+        <!-- Portfolio Modals -->
+
+        <!-- Modal 1 -->
+        <div class="portfolio-modal modal fade" id="portfolioModal1" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="close-modal" data-dismiss="modal">
+                        <div class="lr">
+                            <div class="rl"></div>
+                        </div>
+                    </div>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-8 mx-auto">
+                                <div class="modal-body">
+                                    <!-- Project Details Go Here -->
+                                    <h2 class="text-uppercase">Fantasy</h2>
+                                    <p class="item-intro text-muted">13년차 아마추어 판타지 소설 독자</p>
+                                    <img class="img-fluid d-block mx-auto" src="{% static 'img/portfolio/01-full.jpg' %}" alt="">
+                                    <p>뭐라고 쓰지</p>
+                                    <ul class="list-inline">
+                                    </ul>
+                                    <button class="btn btn-primary" data-dismiss="modal" type="button">
+                                        <i class="fa fa-times"></i>
+                                        Close
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal 2 -->
+        <div class="portfolio-modal modal fade" id="portfolioModal2" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="close-modal" data-dismiss="modal">
+                        <div class="lr">
+                            <div class="rl"></div>
+                        </div>
+                    </div>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-8 mx-auto">
+                                <div class="modal-body">
+                                    <!-- Project Details Go Here -->
+                                    <h2 class="text-uppercase">Fate</h2>
+                                    <p class="item-intro text-muted">'얘는 내가 제일 좋아하는 쓰레기야'</p>
+                                    <img class="img-fluid d-block mx-auto" src="{% static 'img/portfolio/02-full.jpg' %}" alt="">
+                                    <p>최애캐는 사쿠라지만 최애루트는 UBW입니다</p>
+                                    <ul class="list-inline">
+                                    </ul>
+                                    <button class="btn btn-primary" data-dismiss="modal" type="button">
+                                        <i class="fa fa-times"></i>
+                                        Close
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal 3 -->
+        <div class="portfolio-modal modal fade" id="portfolioModal3" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="close-modal" data-dismiss="modal">
+                        <div class="lr">
+                            <div class="rl"></div>
+                        </div>
+                    </div>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-8 mx-auto">
+                                <div class="modal-body">
+                                    <!-- Project Details Go Here -->
+                                    <h2 class="text-uppercase">IU</h2>
+                                    <p class="item-intro text-muted">유애나 1기</p>
+                                    <img class="img-fluid d-block mx-auto" src="{% static 'img/portfolio/03-full.jpg' %}" alt="">
+                                    <p>아 인생</p>
+                                    <ul class="list-inline">
+                                    </ul>
+                                    <button class="btn btn-primary" data-dismiss="modal" type="button">
+                                        <i class="fa fa-times"></i>
+                                        Close
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bootstrap core JavaScript -->
+        <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+        <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+
+        <!-- Plugin JavaScript -->
+        <script src="{% static 'vendor/jquery-easing/jquery.easing.min.js' %}"></script>
+
+        <!-- Custom scripts for this template -->
+        <script src="{% static 'js/agency.min.js' %}"></script>
+
+    </body>
+
+</html>
