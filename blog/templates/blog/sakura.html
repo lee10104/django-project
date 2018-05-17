@@ -1,12 +1,32 @@
 {% extends 'blog/base.html' %}
+{% block extra_head %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
+    <script>
+        $(document).ready(function() {
+            $(".slide-album").bxSlider({
+                speed: 200,
+                randomStart: true,
+                tickerHover: true,
+                adaptiveHeight: true,
+            });
+        });
+    </script>
+{% endblock %}
 {% block content %}
-    {% for picture in pictures %}
-        {% if picture.image %}
-            <img src="{{ picture.image.url }}">
-        {% else %}
-            <img src="{{ picture.link }}">
-        {% endif %}
-    {% endfor %}
+    <div class="title">
+        <h1>사쿠라 사진관</h1>
+    </div>
+    <div class="slide-album">
+        {% for picture in pictures %}
+            {% if picture.image %}
+                <img src="{{ picture.image.url }}">
+            {% else %}
+                <img src="{{ picture.link }}">
+            {% endif %}
+        {% endfor %}
+    </div>
     {% if user.is_authenticated %}
         <form method="post" action="{% url 'add_picture' %}" enctype="multipart/form-data">
             {% csrf_token %}
