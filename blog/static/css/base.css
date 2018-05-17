@@ -1,3 +1,8 @@
 body {
     font-family: 'Spoqa Han Sans', 'Sans-serif';
 }
+
+.page-footer p {
+    text-align: center;
+    color: #F5F5DC;
+}
