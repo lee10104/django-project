@@ -1,7 +1,9 @@
 {% extends 'blog/base.html' %}
+{% load staticfiles %}
 {% block extra_head %}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+    <script src="{% static 'js/ajax_setup.js' %}"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
     <script>
         $(document).ready(function() {
@@ -13,6 +15,22 @@
             });
         });
     </script>
+    <script>
+        $(document).ready(function() {
+            $(".picture").click(function() {
+                if (confirm("삭제하시겠습니까?")) {
+                    $.post("{% url 'delete_picture' %}", {
+                        picture_id: $(this).attr("id"),
+                    }).done(function(result) {
+                        alert(result.message);
+                        if (result.success) {
+                            location.reload();
+                        }
+                    });
+                }
+            });
+        });
+    </script>
 {% endblock %}
 {% block content %}
     <div class="title">
@@ -20,11 +38,7 @@
     </div>
     <div class="slide-album">
         {% for picture in pictures %}
-            {% if picture.image %}
-                <img src="{{ picture.image.url }}">
-            {% else %}
-                <img src="{{ picture.link }}">
-            {% endif %}
+            <img class="picture" id="{{ picture.id }}" src="{% if picture.image %}{{ picture.image.url }}{% else %}{{ picture.link }}{% endif %}">
         {% endfor %}
     </div>
     {% if user.is_authenticated %}

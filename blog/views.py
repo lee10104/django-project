@@ -4,6 +4,7 @@ from django.contrib.auth import logout as auth_logout
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from .forms import *
+import json
 
 def main(request):
     return render(request, 'blog/index.html', {})
@@ -72,6 +73,23 @@ def add_picture(request):
                 obj.save()
                 return redirect('sakura')
 
-@login_required
 def delete_picture(request):
-    return redirect('sakura')
+    if request.method == 'POST':
+        context = {}
+        success = False
+        if request.user.is_authenticated():
+            try:
+                picture = Picture.objects.get(id=request.POST.get('picture_id'))
+            except:
+                picture = None
+            if picture:
+                picture.delete()
+                success = True
+                message = '삭제되었습니다.'
+            else:
+                message = '잘못된 사진입니다.'
+        else:
+            message = '먼저 로그인 해주세요.'
+        context['success'] = success
+        context['message'] = message
+        return HttpResponse(json.dumps(context), 'application/json')
