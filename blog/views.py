@@ -56,6 +56,8 @@ def add_picture(request):
                 obj.category = category
                 obj.save()
                 return redirect('album', category.name)
+        else:
+            return HttpResponse("잘못된 입력입니다.")
 
 def delete_picture(request):
     if request.method == 'POST':
