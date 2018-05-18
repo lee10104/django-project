@@ -15,22 +15,24 @@
             });
         });
     </script>
-    <script>
-        $(document).ready(function() {
-            $(".picture").click(function() {
-                if (confirm("삭제하시겠습니까?")) {
-                    $.post("{% url 'delete_picture' %}", {
-                        picture_id: $(this).attr("id"),
-                    }).done(function(result) {
-                        alert(result.message);
-                        if (result.success) {
-                            location.reload();
-                        }
-                    });
-                }
+    {% if request.user.is_authenticated %}
+        <script>
+            $(document).ready(function() {
+                $(".picture").click(function() {
+                    if (confirm("삭제하시겠습니까?")) {
+                        $.post("{% url 'delete_picture' %}", {
+                            picture_id: $(this).attr("id"),
+                        }).done(function(result) {
+                            alert(result.message);
+                            if (result.success) {
+                                location.reload();
+                            }
+                        });
+                    }
+                });
             });
-        });
-    </script>
+        </script>
+    {% endif %}
 {% endblock %}
 {% block content %}
     <div class="title">
