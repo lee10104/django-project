@@ -36,7 +36,7 @@
 {% endblock %}
 {% block content %}
     <div class="title">
-        <h1>사쿠라 사진관</h1>
+        <h1>{{ category.kor_name }} 사진관</h1>
     </div>
     <div class="slide-album">
         {% for picture in pictures %}
@@ -46,7 +46,7 @@
     {% if user.is_authenticated %}
         <form method="post" action="{% url 'add_picture' %}" enctype="multipart/form-data">
             {% csrf_token %}
-            <input type="hidden" name="category" value="sakura">
+            <input type="hidden" name="category" value="{{ category.name }}">
             {{ form.as_p }}
             <button type="submit">추가하기</button>
         </form>

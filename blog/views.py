@@ -24,19 +24,20 @@ def signup(request):
         form = UserForm()
         return render(request, 'blog/signup.html', {'form': form})
 
-def sakura(request):
+def album(request, cate_name):
     try:
-        category = Category.objects.get(name='sakura')
+        category = Category.objects.get(genre=Genre.objects.get(name='picture'), name=cate_name)
     except:
-        category = Category.objects.create(name='sakura')
+        category = None
+
     pictures = Picture.objects.filter(category=category)
     form = PictureForm()
     context = {
-        'category': category,
-        'pictures': pictures,
-        'form': form,
+            'category': category,
+            'pictures': pictures,
+            'form': form,
     }
-    return render(request, 'blog/sakura.html', context)
+    return render(request, 'blog/album.html', context)
 
 @login_required
 def add_picture(request):
@@ -54,7 +55,7 @@ def add_picture(request):
                 obj = form.save(commit=False)
                 obj.category = category
                 obj.save()
-                return redirect('sakura')
+                return redirect('album', category.name)
 
 def delete_picture(request):
     if request.method == 'POST':
