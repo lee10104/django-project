@@ -1,0 +1,7 @@
+{% extends 'blog/base.html' %}
+{% block content %}
+    {% for novel in novels %}
+        <p>{{ novel.title }} - {{ novel.author }}</p>
+        <p>{{ novel.info }}</p>
+    {% endfor %}
+{% endblock %}

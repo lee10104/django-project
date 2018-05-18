@@ -3,7 +3,9 @@ from django.contrib.auth import login as auth_login
 from django.contrib.auth import logout as auth_logout
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
+from datetime import datetime, timedelta
 from .forms import *
+from .crawler import save_novels
 import json
 
 def main(request):
@@ -74,3 +76,10 @@ def delete_picture(request):
         context['success'] = success
         context['message'] = message
         return HttpResponse(json.dumps(context), 'application/json')
+
+def new_novels(request):
+    context = {}
+    yesterday = datetime.today() - timedelta(days=1)
+    novels = Novel.objects.filter(last_update__gte=yesterday)
+    context['novels'] = novels
+    return render(request, 'blog/new_novels.html', context)
