@@ -4,8 +4,13 @@ from django.core.validators import URLValidator
 from django.contrib.auth.models import User
 from .core import *
 
-class Category(models.Model):
+class Genre(models.Model):
     name = models.CharField(max_length=100)
+
+class Category(models.Model):
+    genre = models.ForeignKey('Genre')
+    name = models.CharField(max_length=100)
+    kor_name = models.CharField(max_length=100)
 
 class Picture(models.Model):
     category = models.ForeignKey('Category')
@@ -16,7 +21,7 @@ class Novel(models.Model):
     book_code = models.IntegerField()
     title = models.CharField(max_length=100)
     author = models.CharField(max_length=50)
-    category = models.ForeignKey('Category') #TODO: Don't combine picture and novel category - fix it later
+    category = models.ForeignKey('Category')
     cover = models.CharField(max_length=200, validators=[URLValidator()])
     info = models.TextField(blank=True)
     last_update = models.DateTimeField()
