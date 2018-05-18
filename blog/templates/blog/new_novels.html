@@ -1,7 +1,11 @@
 {% extends 'blog/base.html' %}
 {% block content %}
-    {% for novel in novels %}
-        <p>{{ novel.title }} - {{ novel.author }}</p>
-        <p>{{ novel.info }}</p>
+    <h1>조아라 최신작</h1>
+    {% for novels_in_cate in novels_in_cate_list %}
+        <h2>{{ novels_in_cate.name }}</h2>
+        {% for novel in novels_in_cate.novel_list %}
+        <p><a href="http://www.joara.com/literature/view/book_intro.html?book_code={{ novel.book_code }}">{{ novel.title }}</a> - {{ novel.author }}</p>
+            <p>{{ novel.info }}</p>
+        {% endfor %}
     {% endfor %}
 {% endblock %}

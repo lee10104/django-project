@@ -80,6 +80,13 @@ def delete_picture(request):
 def new_novels(request):
     context = {}
     yesterday = datetime.today() - timedelta(days=1)
-    novels = Novel.objects.filter(last_update__gte=yesterday)
-    context['novels'] = novels
+    categories = Category.objects.all().exclude(name='sakura') #TODO: fix category
+    new_novels = Novel.objects.filter(last_update__gte=yesterday, muted=False)
+    novels_in_cate_list = []
+    for category in categories:
+        novels_in_cate = {}
+        novels_in_cate['name'] = category.name
+        novels_in_cate['novel_list'] = new_novels.filter(category=category)
+        novels_in_cate_list.append(novels_in_cate)
+    context['novels_in_cate_list'] = novels_in_cate_list
     return render(request, 'blog/new_novels.html', context)
