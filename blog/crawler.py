@@ -12,7 +12,7 @@ def get_soup(url):
     return BeautifulSoup(requests.get(url).text, 'html.parser')
 
 def get_soup_joara_category(category, page_no):
-    return get_soup(JOARA_URL+'literature/view/book_list.html?sl_category='+category+'&page_no='+str(page_no))
+    return get_soup(JOARA_URL+'literature/view/book_list.html?sl_category='+category.name+'&page_no='+str(page_no))
 
 def save_novel_info(novel):
     if novel.category.name == 'rofan':
