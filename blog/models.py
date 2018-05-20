@@ -29,3 +29,7 @@ class Novel(models.Model):
 
     def __str__(self):
         return self.title
+
+    def mute(self):
+        self.muted = True
+        self.save()

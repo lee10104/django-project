@@ -6,7 +6,6 @@ from django.http import HttpResponse
 from datetime import datetime, timedelta
 from .forms import *
 from .crawler import save_novels
-import json
 
 def main(request):
     return render(request, 'blog/index.html', {})
@@ -78,7 +77,7 @@ def delete_picture(request):
             message = '먼저 로그인 해주세요.'
         context['success'] = success
         context['message'] = message
-        return HttpResponse(json.dumps(context), 'application/json')
+        return send_http_response(context)
 
 def new_novels(request):
     context = {}
@@ -93,3 +92,19 @@ def new_novels(request):
         novels_in_cate_list.append(novels_in_cate)
     context['novels_in_cate_list'] = novels_in_cate_list
     return render(request, 'blog/new_novels.html', context)
+
+def mute_novel(request):
+    if request.method == 'POST':
+        context = {}
+        success = False
+        book_code = request.POST.get('book_code')
+        try:
+            novel = Novel.objects.get(book_code=book_code)
+            novel.mute()
+            success = True
+            message = '뮤트되었습니다.'
+        except:
+            message = '해당 소설을 찾을 수 없습니다.'
+        context['success'] = success
+        context['message'] = message
+        return send_http_response(context)

@@ -2,6 +2,23 @@
 {% load staticfiles %}
 {% block extra_head %}
     <link rel="stylesheet" href="{% static 'css/new_novels.css' %}">
+    <script>
+        $(document).ready(function() {
+            $(".mute-btn").click(function() {
+                if (confirm("목록에서 삭제하시겠습니까?")) {
+                    var book_code = $(this).attr('id').split("-")[1];
+                    $.post("{% url 'mute_novel' %}", {
+                        book_code: book_code,
+                    }).done(function(result) {
+                        alert(result.message);
+                        if (result.success) {
+                            location.reload();
+                        }
+                    });
+                }
+            });
+        });
+    </script>
 {% endblock %}
 {% block content %}
     <div class="page-title">
@@ -24,8 +41,8 @@
                                     <a style="margin-left: 10px;" href="http://www.joara.com/literature/view/book_intro.html?book_code={{ novel.book_code }}">{{ novel.title }}</a> - {{ novel.author }}
                                 </div>
                                 <div class="button-box">
-                                    <button class="btn btn-default">UPDATE</button>
-                                    <button class="btn btn-danger">MUTE</button>
+                                    <button id="update-{{ novel.book_code }}" class="btn btn-default update-btn">UPDATE</button>
+                                    <button id="mute-{{ novel.book_code }}" class="btn btn-danger mute-btn">MUTE</button>
                                 </div>
                             </div>
                         </div>
@@ -33,7 +50,6 @@
                             <p>{{ novel.info }}</p>
                         </div>
                     {% endfor %}
-                </div>
                 </div>
             </div>
         {% endfor %}

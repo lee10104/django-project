@@ -12,4 +12,5 @@ urlpatterns = [
     url(r'^add_picture$', views.add_picture, name='add_picture'),
     url(r'^delete_picture$', views.delete_picture, name='delete_picture'),
     url(r'^new_novels', views.new_novels, name='new_novels'),
+    url(r'^mute_novel$', views.mute_novel, name='mute_novel'),
 ]

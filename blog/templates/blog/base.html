@@ -2,6 +2,7 @@
 <html>
     <head>
         <title>내 맘대로 블로그</title>
+        <!-- encoding -->
         <meta charset="utf-8">
 
         <!-- bootstrap -->
@@ -14,6 +15,13 @@
 
         <!-- fonts -->
         <link href='//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css' rel='stylesheet' type='text/css'>
+
+        <!-- jquery -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+        <!-- set csrf_token -->
+        <script src="{% static 'js/ajax_setup.js' %}"></script>
+
         {% block extra_head %}
         {% endblock %}
     </head>
