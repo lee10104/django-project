@@ -89,7 +89,7 @@ def new_novels(request):
     for category in categories:
         novels_in_cate = {}
         novels_in_cate['name'] = category.kor_name
-        novels_in_cate['novel_list'] = new_novels.filter(category=category)
+        novels_in_cate['novel_list'] = new_novels.filter(category=category).order_by('-last_update')
         novels_in_cate_list.append(novels_in_cate)
     context['novels_in_cate_list'] = novels_in_cate_list
     return render(request, 'blog/new_novels.html', context)

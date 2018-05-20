@@ -1,0 +1,27 @@
+div {
+    margin: 10px 0 10px 0;
+}
+
+p {
+    margin: 10px;
+}
+
+.button-box {
+    margin: 10px;
+}
+
+.novel-cover {
+    border: solid 1px #DDD;
+    height: 202px;
+    width: 202px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.novel-cover img {
+    max-height: 200px;
+    max-width: 200px;
+}
