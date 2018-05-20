@@ -29,17 +29,3 @@ class Novel(models.Model):
 
     def __str__(self):
         return self.title
-
-# set default genre and category
-def setting_db():
-    # create default genre
-    picture = Genre.objects.create(name='picture')
-    novel = Genre.objects.create(name='novel')
-
-    # create default category - picture
-    sakura = Category.objects.create(genre=picture, name='sakura', kor_name='사쿠라')
-
-    # create default category - novel
-    rofan = Category.objects.create(genre=novel, name='rofan', kor_name='로맨스 판타지')
-    parody = Category.objects.create(genre=novel, name='parody', kor_name='패러디')
-    fantasy = Category.objects.create(genre=novel, name='fantasy', kor_name='판타지')
