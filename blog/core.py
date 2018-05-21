@@ -6,3 +6,6 @@ def upload_path(instance, filename):
 
 def send_http_response(info):
     return HttpResponse(json.dumps(info), 'application/json')
+
+def remove_indents(s):
+    return s.replace('\t', '').replace('\n', '').replace('\r', '')
