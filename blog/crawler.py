@@ -20,7 +20,7 @@ def get_romance_dict(book_code):
     novel = {
         'valid': valid,
     }
-    if not soup.find('em', class_='ico_new').contents:
+    if not soup.find('em', class_='ico_new'):
         return novel
     else:
         novel['valid'] = True
@@ -57,7 +57,7 @@ def get_not_romance_dict(book_code):
     novel = {
         'valid': valid,
     }
-    if not soup.find('span', class_='work_tit').contents:
+    if not soup.find('span', class_='work_tit'):
         return novel
     else:
         novel['valid'] = True
@@ -66,7 +66,7 @@ def get_not_romance_dict(book_code):
         real_category_name = soup.find('select', class_='fe_select').find('option', selected=True)['value']
         real_category = Category.objects.get(name=real_category_name)
 
-        title = soup.find('span', class_='work_tit').contents[0]
+        title = soup.find('span', class_='work_tit').contents[0].find('a').contents[0]['title']
         author = remove_indents(soup.find('span', class_='member_nickname').contents[0]).replace(' ', '')
         cover = soup.find('p', class_='work_img').find('img')['src']
         info_txt = soup.find('p', class_='work_intro').contents[0]
@@ -125,6 +125,8 @@ def save_novel(soup, category):
         novel.save()
     except:
         novel_dict = get_novel_dict(category, book_code)
+        if not novel_dict:
+            return None
         novel = Novel.objects.create(
             book_code=book_code,
             title=novel_dict['title'],
@@ -132,7 +134,7 @@ def save_novel(soup, category):
             category=novel_dict['category'],
             cover=novel_dict['cover'],
             info=novel_dict['info'],
-            last_update=novel_dict['last_update'],
+            last_update=last_update,
         )
 
     return novel
@@ -145,7 +147,6 @@ def save_novels(category, page_no):
         series = []
     num = 0
 
-    print(len(series))
     for piece in series:
         if num % 2 == 0:
             novel = save_novel(piece, category)
