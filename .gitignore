@@ -10,3 +10,4 @@ __pycache__
 migrations
 .DS_Store
 celerybeat.pid
+/logs

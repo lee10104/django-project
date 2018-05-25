@@ -1,6 +1,7 @@
 from __future__ import absolute_import, unicode_literals
 from celery import shared_task
 from .crawler import save_novels
+from .models import *
 
 @shared_task
 def joara_crawler():
