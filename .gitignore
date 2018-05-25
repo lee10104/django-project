@@ -9,3 +9,4 @@ __pycache__
 /media
 migrations
 .DS_Store
+celerybeat.pid

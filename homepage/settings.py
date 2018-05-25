@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'djcelery',
     'blog',
 ]
 
@@ -130,3 +131,26 @@ AUTH_USER_MODEL = 'auth.User'
 
 LOGOUT_URL = '/logout/'
 LOGOUT_REDIRECT_URL = 'main'
+
+# Celery CONFIGURATION
+# Broker settings
+BROKER_URL = 'amqp://guest:guest@localhost//'
+
+# Using the database to store task state and results
+CELERY_RESULT_BACKEND = 'amqp://'
+
+# djcelery
+CELERY_RESULT_BACKEND = 'djcelery.backends.database:DatabaseBackend'
+CELERYBEAT_SCHEDULER = 'djcelery.schedulers.DatabaseScheduler'
+
+import djcelery
+djcelery.setup_loader()
+
+from datetime import timedelta
+
+CELERYBEAT_SCHEDULE = {
+    'crawl-joara-every-1-hour': {
+        'task': 'blog.tasks.joara_crawler',
+        'schedule': timedelta(hours=1),
+    },
+}
