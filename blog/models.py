@@ -26,6 +26,7 @@ class Novel(models.Model):
     info = models.TextField(blank=True)
     last_update = models.DateTimeField()
     muted = models.BooleanField(default=False)
+    finished = models.BooleanField(default=False)
 
     def __str__(self):
         return self.title
