@@ -104,7 +104,7 @@ def get_not_romance_dict(book_code):
         real_category_name = soup.find('select', class_='fe_select').find('option', selected=True)['value']
         real_category = Category.objects.get(name=real_category_name)
 
-        title = soup.find('span', class_='work_tit').contents[0].find('a').contents[0]['title']
+        title = soup.find('span', class_='work_tit').contents[0]['title']
         author = remove_indents(soup.find('span', class_='member_nickname').contents[0]).replace(' ', '')
         cover = soup.find('p', class_='work_img').find('img')['src']
         info_txt = soup.find('p', class_='work_intro').contents[0]
@@ -164,6 +164,8 @@ def save_novel(soup, category):
     try:
         novel = Novel.objects.get(book_code=book_code)
         novel.last_update = last_update
+        if finished:
+            novel.finished = True
         novel.save()
     except:
         if finished:
