@@ -22,8 +22,14 @@ def oauth_request(consumer_key, consumer_secret, access_token, access_token_secr
         print(e)
         return None
 
+def get_twitter_keys():
+    with open('/home/lee10104/django-project/config.json', 'r') as f:
+        keys = json.load(f)['TWITTER']
+    return keys
+
 def get_response_from_twitter_api(end_node, arg_dict):
-    client = oauth_request(Twitter.CONSUMER_KEY, Twitter.CONSUMER_SECRET, Twitter.ACCESS_TOKEN, Twitter.ACCESS_TOKEN_SECRET)
+    keys = get_twitter_keys()
+    client = oauth_request(keys['CONSUMER_KEY'], keys['CONSUMER_SECRET'], keys['ACCESS_TOKEN'], keys['ACCESS_TOKEN_SECRET'])
     base = 'https://api.twitter.com/1.1/'
     url = base + end_node
     if arg_dict:
