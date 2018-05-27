@@ -27,7 +27,7 @@ with open('/home/lee10104/django-project/config.json', 'r') as f:
 SECRET_KEY = config['DEFAULT']['SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['.emellen.com']
 

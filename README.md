@@ -31,9 +31,7 @@
 
 5. 기타
   * TODO
-    * 뭐더라
-    * 생각나면 쓰기
-    * 아 홈페이지 서버에 올리기
     * fabric 세팅하기
     * https
     * requirements.txt
+    * 404 페이지
