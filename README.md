@@ -2,8 +2,6 @@
 
 1. 메인 화면
   * 테마: [startbootstrap-agency](https://github.com/blackrockdigital/startbootstrap-agency/)
-  * TODO
-    * Twitter API 쓰기
 
 2. 사진관
   * url: /album/~~~

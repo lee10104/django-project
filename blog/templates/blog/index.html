@@ -284,34 +284,22 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-sm-6">
-                        <div class="team-member">
-                            <img class="mx-auto rounded-circle" src="https://pbs.twimg.com/profile_images/980484882936709120/1QOTPbK6_400x400.jpg" alt="">
-                            <h4>이배추님</h4>
-                            <p class="text-muted">일상 계정</p>
-                            <ul class="list-inline social-buttons">
-                                <li class="list-inline-item">
-                                    <a href="https://twitter.com/lee10104_">
-                                        <i class="fa fa-twitter"></i>
-                                    </a>
-                                </li>
-                            </ul>
+                    {% for twitter_user in twitter_users %}
+                        <div class="col-sm-6">
+                            <div class="team-member">
+                                <img class="mx-auto rounded-circle" src="{{ twitter_user.profile_image }}" alt="">
+                                <h4>{{ twitter_user.user_name }}</h4>
+                                <p class="text-muted">{{ twitter_user.description }}</p>
+                                <ul class="list-inline social-buttons">
+                                    <li class="list-inline-item">
+                                        <a href="https://twitter.com/{{ twitter_user.user_id }}">
+                                            <i class="fa fa-twitter"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="team-member">
-                            <img class="mx-auto rounded-circle" src="https://pbs.twimg.com/profile_images/982999287708581896/pgPOggMK_400x400.jpg" alt="">
-                            <h4>소설보는 사람</h4>
-                            <p class="text-muted">판타지 소설 계정</p>
-                            <ul class="list-inline social-buttons">
-                                <li class="list-inline-item">
-                                    <a href="https://twitter.com/soseol_reader">
-                                        <i class="fa fa-twitter"></i>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
+                    {% endfor %}
                 </div>
                 <div class="row">
                     <div class="col-lg-8 mx-auto text-center">

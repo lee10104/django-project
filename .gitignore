@@ -11,3 +11,4 @@ migrations
 .DS_Store
 celerybeat.pid
 /logs
+keys.py

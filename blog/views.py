@@ -8,7 +8,25 @@ from .forms import *
 from .crawler import save_novels
 
 def main(request):
-    return render(request, 'blog/index.html', {})
+    twitter_user_ids = ['lee10104_', 'soseol_reader']
+    twitter_users = []
+    for twitter_user in twitter_user_ids:
+        response = get_response_from_twitter_api('users/show.json', {'screen_name': twitter_user})
+        profile_image = 'https://abs.twimg.com/sticky/default_profile_images/default_profile.png'
+        if response:
+            if response['status'] == '200':
+                user_id = response['data']['screen_name']
+                user_name = response['data']['name']
+                description = response['data']['description']
+                profile_image = response['data']['profile_image_url'].replace('_normal', '')
+                twitter_users.append({
+                    'user_id': user_id,
+                    'user_name': user_name,
+                    'description': description,
+                    'profile_image': profile_image,
+                })
+
+    return render(request, 'blog/index.html', {'twitter_users': twitter_users})
 
 def signup(request):
     if request.method == 'POST':
