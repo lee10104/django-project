@@ -56,4 +56,4 @@ def deploy():
     os.system('sudo systemctl daemon-reload')
     os.system('sudo systemctl restart gunicorn')
     # restart nginx
-    os.system('sudo service restart nginx')
+    os.system('sudo systemctl restart nginx')
