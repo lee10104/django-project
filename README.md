@@ -33,5 +33,4 @@
   * TODO
     * fabric 세팅하기
     * https
-    * requirements.txt
     * 404 페이지
