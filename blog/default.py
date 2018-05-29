@@ -1,5 +1,6 @@
-import .models import *
-import .crawler import *
+from .models import *
+from .crawler import *
+import os
 
 # set default db contents
 def set_db():
@@ -20,3 +21,39 @@ def set_db():
     for page_no in range(1, 6):
         for category in categories:
             save_novels(category, page_no)
+
+# start celery
+def start_celery():
+    # start celeryd
+    os.system(
+        'celery multi start worker1 \
+        -A homepage \
+        --logfile="$HOME/django-project/logs/celery/%n%I.log" \
+        --pidfile="$HOME/django-project/logs/celery/%n.pid"'
+    )
+    # start celerybeat
+    os.system(
+        'celery beat -A homepage \
+        --pidfile="$HOME/django-project/logs/celery/beat.pid" \
+        --detach'
+    )
+
+# restart celery
+def restart_celery():
+    # restart celeryd
+    os.system(
+        'celery multi restart worker1 \
+        -A homepage \
+        --logfile="$HOME/django-project/logs/celery/%n%I.log" \
+        --pidfile="$HOME/django-project/logs/celery/%n.pid"'
+    )
+
+# deploy
+def deploy():
+    # collectstatic
+    os.system('python manage.py collectstatic')
+    # restart gunicorn
+    os.system('sudo systemctl daemon-reload')
+    os.system('sudo systemctl restart gunicorn')
+    # restart nginx
+    os.system('sudo service restart nginx')
