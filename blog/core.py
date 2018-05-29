@@ -1,5 +1,4 @@
 from django.http import HttpResponse
-from .keys import *
 import json
 import oauth2
 
