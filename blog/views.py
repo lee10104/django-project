@@ -116,13 +116,16 @@ def mute_novel(request):
         context = {}
         success = False
         book_code = request.POST.get('book_code')
-        try:
-            novel = Novel.objects.get(book_code=book_code)
-            novel.mute()
-            success = True
-            message = '뮤트되었습니다.'
-        except:
-            message = '해당 소설을 찾을 수 없습니다.'
+        if request.user.is_authenticated():
+            try:
+                novel = Novel.objects.get(book_code=book_code)
+                novel.mute()
+                success = True
+                message = '뮤트되었습니다.'
+            except:
+                message = '해당 소설을 찾을 수 없습니다.'
+        else:
+            message = '먼저 로그인 해주세요.'
         context['success'] = success
         context['message'] = message
         return send_http_response(context)
