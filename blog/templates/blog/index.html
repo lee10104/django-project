@@ -288,7 +288,7 @@
                 </div>
                 <div class="row">
                     {% for twitter_user in twitter_users %}
-                        <div class="col-sm-6">
+                        <div class="col-sm-{{ block }}">
                             <div class="team-member">
                                 <img class="mx-auto rounded-circle" src="{{ twitter_user.profile_image }}" alt="">
                                 <h4>{{ twitter_user.user_name }}</h4>

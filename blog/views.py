@@ -8,7 +8,7 @@ from .forms import *
 from .crawler import save_novels
 
 def main(request):
-    twitter_user_ids = ['lee10104_', 'soseol_reader']
+    twitter_user_ids = ['lee10104_', 'soseol_reader', 'LED_Galaxy']
     twitter_users = []
     for twitter_user in twitter_user_ids:
         response = get_response_from_twitter_api('users/show.json', {'screen_name': twitter_user})
@@ -26,7 +26,8 @@ def main(request):
                     'profile_image': profile_image,
                 })
 
-    return render(request, 'blog/index.html', {'twitter_users': twitter_users})
+    block = 12 // len(twitter_users)
+    return render(request, 'blog/index.html', {'twitter_users': twitter_users, 'block': block})
 
 def signup(request):
     if request.method == 'POST':
