@@ -22,36 +22,39 @@
 {% endblock %}
 {% block content %}
     <div class="page-title">
-        <h1>조아라 최신작</h1>
+        <h1>조아라 최신작 - {{ name }}</h1>
+    </div>
+    <div class="categories">
+        {% for category in categories %}
+            <a href="{% url 'new_novels' cate_name=category.name %}"{% if category.kor_name == name %} class="active"{% endif %}>{{ category.kor_name }}</a> &nbsp;
+        {% endfor %}
     </div>
     <div class="page-content">
-        {% for novels_in_cate in novels_in_cate_list %}
-            <div>
-                <div class="category-name">
-                    <h2>{{ novels_in_cate.name }}</h2>
-                </div>
-                <div class="novels row">
-                    {% for novel in novels_in_cate.novel_list %}
-                        <div class="novel-info col-md-12">
-                            <div class="novel-cover col-md-3">
-                                <img src="{{ novel.cover }}">
-                            </div>
-                            <div class="title-box col-md-9">
-                                <div class="novel-title">
-                                    <a style="margin-left: 10px;" href="http://www.joara.com/literature/view/book_intro.html?book_code={{ novel.book_code }}">{{ novel.title }}</a> - {{ novel.author }}
-                                </div>
-                                <div class="button-box">
-                                    <button id="update-{{ novel.book_code }}" class="btn btn-default update-btn">UPDATE</button>
-                                    <button id="mute-{{ novel.book_code }}" class="btn btn-danger mute-btn">MUTE</button>
-                                </div>
-                            </div>
+        <div class="novels row">
+            {% for novel in novel_list %}
+                <div class="novel-info col-md-12">
+                    <div class="novel-cover col-md-3">
+                        <img src="{{ novel.cover }}">
+                    </div>
+                    <div class="title-box col-md-9">
+                        <div class="novel-title">
+                            <a style="margin-left: 10px;" href="http://www.joara.com/literature/view/book_intro.html?book_code={{ novel.book_code }}">{{ novel.title }}</a> - {{ novel.author }}
                         </div>
-                        <div class="novel-info col-md-12">
-                            <p>{{ novel.info }}</p>
+                        <div class="button-box">
+                            <button id="update-{{ novel.book_code }}" class="btn btn-default update-btn">UPDATE</button>
+                            <button id="mute-{{ novel.book_code }}" class="btn btn-danger mute-btn">MUTE</button>
                         </div>
-                    {% endfor %}
+                    </div>
                 </div>
+                <div class="novel-info col-md-12">
+                    <p>{{ novel.info }}</p>
+                </div>
+            {% endfor %}
+            <div class="paginator">
+                {% for page_no in novel_list.paginator.page_range %}
+                    <a href="?page_no={{ page_no }}"{% if page_no == novel_list.number %} class="active"{% endif %}>{{ page_no }}</a>
+                {% endfor %}
             </div>
-        {% endfor %}
+        </div>
     </div>
 {% endblock %}

@@ -25,3 +25,7 @@ p {
     max-height: 200px;
     max-width: 200px;
 }
+
+.active {
+    color: black;
+}

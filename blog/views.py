@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import login as auth_login
 from django.contrib.auth import logout as auth_logout
 from django.contrib.auth.decorators import login_required
+from django.core.paginator import Paginator
 from django.http import HttpResponse
 from datetime import datetime, timedelta
 from .forms import *
@@ -98,18 +99,26 @@ def delete_picture(request):
         context['message'] = message
         return send_http_response(context)
 
-def new_novels(request):
+def new_novels(request, cate_name):
     context = {}
     yesterday = datetime.today() - timedelta(days=1)
-    categories = Category.objects.filter(genre=Genre.objects.get(name='novel'))
-    new_novels = Novel.objects.filter(last_update__gte=yesterday, muted=False)
-    novels_in_cate_list = []
-    for category in categories:
-        novels_in_cate = {}
-        novels_in_cate['name'] = category.kor_name
-        novels_in_cate['novel_list'] = new_novels.filter(category=category).order_by('-last_update')
-        novels_in_cate_list.append(novels_in_cate)
-    context['novels_in_cate_list'] = novels_in_cate_list
+    category = Category.objects.get(name=cate_name)
+    new_novels = Novel.objects.filter(category__name=cate_name)
+
+    name = category.kor_name
+    novels = new_novels.filter(muted=False, last_update__gte=yesterday).order_by('-last_update')
+
+    paginator = Paginator(novels, 15)
+    page_no = request.GET.get('page_no')
+    if page_no:
+        page_no = int(page_no)
+    else:
+        page_no = 1
+    novel_list = paginator.page(page_no)
+
+    context['name'] = name
+    context['novel_list'] = novel_list
+    context['categories'] = Category.objects.filter(genre__name='novel')
     return render(request, 'blog/new_novels.html', context)
 
 def mute_novel(request):
