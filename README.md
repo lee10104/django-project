@@ -2,6 +2,7 @@
 
 1. 메인 화면
   * 테마: [startbootstrap-agency](https://github.com/blackrockdigital/startbootstrap-agency/)
+  * 트위터 api 이용, 내 계정 정보 가져오기
 
 2. 사진관
   * url: /album/~~~
