@@ -3,7 +3,7 @@ from django.contrib.auth import login as auth_login
 from django.contrib.auth import logout as auth_logout
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
-from django.http import HttpResponse
+from django.http import HttpResponse, Http404
 from datetime import datetime, timedelta
 from .forms import *
 from .crawler import save_novels
@@ -46,8 +46,8 @@ def signup(request):
 def album(request, cate_name):
     try:
         category = Category.objects.get(genre=Genre.objects.get(name='picture'), name=cate_name)
-    except:
-        category = None
+    except Category.DoesNotExist:
+        raise Http404()
 
     pictures = Picture.objects.filter(category=category)
     form = PictureForm()
@@ -102,7 +102,10 @@ def delete_picture(request):
 def new_novels(request, cate_name):
     context = {}
     yesterday = datetime.today() - timedelta(days=1)
-    category = Category.objects.get(name=cate_name)
+    try:
+        category = Category.objects.get(genre__name='novel', name=cate_name)
+    except Category.DoesNotExist:
+        raise Http404()
     new_novels = Novel.objects.filter(category__name=cate_name)
 
     name = category.kor_name
