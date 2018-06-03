@@ -1,0 +1,8 @@
+{% extends 'blog/base.html' %}
+{% load staticfiles %}
+{% block content %}
+    <h1>없는 페이지입니다~</h1>
+    <img src="{% static 'img/error/depressed.jpg' %}">
+    <p>그렇다 패기롭게 커스텀 404 페이지를 쓰려 하였으나 나에게 그것을 디자인할 능력이 없다는 것을 깨달아 버리고 만 것이다</p>
+    <p><a href="{% url 'main' %}">메인으로 돌아가기</a></p>
+{% endblock %}
