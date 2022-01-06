@@ -5,7 +5,7 @@ bcrypt==3.1.4
 beautifulsoup4==4.6.0
 billiard==3.3.0.23
 bs4==0.0.1
-celery==3.1.26.post2
+celery==5.2.2
 certifi==2018.4.16
 cffi==1.11.5
 chardet==3.0.4
