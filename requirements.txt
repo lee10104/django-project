@@ -6,7 +6,7 @@ beautifulsoup4==4.6.0
 billiard==3.3.0.23
 bs4==0.0.1
 celery==3.1.26.post2
-certifi==2018.4.16
+certifi==2022.12.7
 cffi==1.11.5
 chardet==3.0.4
 cryptography==2.2.2
